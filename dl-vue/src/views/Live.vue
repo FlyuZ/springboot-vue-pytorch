@@ -1,6 +1,6 @@
 <template>
-  <div class="hello-ezuikit-js">
-    <div id="video-container" style="width: 600px; height: 600px"></div>
+  <div class="hello-ezuikit-js"  style="position:absolute;left:50%;top:50%;transform: translate(-50%,-50%);">
+    <div id="video-container" style="width:600px; height:600px;align:center;"></div>
   </div>
 </template>
 

@@ -1,27 +1,31 @@
 <template>
-  <div class="test" style="width: 100%; height: 600px">
-    <el-row>
+  <div
+    class="test"
+    style="
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      transform: translate(-50%, -50%);
+      margin : 30px;
+    "
+  >
+    <el-row :gutter="0" type="flex" justify="center" align="middle">
+      <el-col :span="8">
       <el-button
         id="init"
         type="primary"
         round
         @click="initdl()"
         :loading="loadingflag"
+        >初始化模型</el-button
       >
-        初始化模型</el-button
-      >
+      </el-col>
+      <el-col :span="8">
       <el-switch v-model="value1" inactive-text="播放" active-text="暂停">
       </el-switch>
+      </el-col>
     </el-row>
-    <div
-      style="
-        width: 90%;
-        height: 282px;
-        float: left;
-        margin-left: 5%;
-        margin-top: 1%;
-      "
-    >
+    <div style="margin-top: 3%">
       <canvas
         id="can"
         width="640"
@@ -42,7 +46,7 @@ export default {
   data() {
     return {
       value1: false,
-      base64img: "",
+      base64img: "https://www.nwsuaf.edu.cn/images/2020-08/26990bf5a4704714820e26c84b3eb6c0.jpg",
       loadingflag: false,
     };
   },
@@ -57,10 +61,10 @@ export default {
       if (value === true) {
         _this.timer = setInterval(function () {
           // 构建下一张图片地址
-          _this.getimg()
+          _this.getimg();
           // console.log(this.base64img)
           // 重新绘制
-          _this.drawfame()
+          _this.drawfame();
         }, 50);
       } else {
         window.clearInterval(_this.timer);
@@ -69,10 +73,10 @@ export default {
   },
   methods: {
     drawfame() {
-      var can = document.getElementById("can")
-      var cxt = can.getContext("2d")
-      var img = new Image()
-      img.src = this.base64img
+      var can = document.getElementById("can");
+      var cxt = can.getContext("2d");
+      var img = new Image();
+      img.src = this.base64img;
       img.onload = function () {
         cxt.drawImage(img, 0, 0, 640, 360);
       };
@@ -81,7 +85,7 @@ export default {
       // GET
       axios.get("/getimg").then((response) => {
         this.base64img = "data:image/jpg;base64," + response.data;
-        console.log(this.base64img.length)
+        console.log(this.base64img.length);
       });
     },
     initdl() {

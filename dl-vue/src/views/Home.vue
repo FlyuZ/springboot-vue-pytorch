@@ -17,7 +17,4 @@
 .logo {
   width: 50%;
 }
-.btn {
-  margin-top: 100px;
-}
 </style>
