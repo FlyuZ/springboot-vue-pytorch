@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       value1: false,
-      base64img: "https://www.nwsuaf.edu.cn/images/2020-08/26990bf5a4704714820e26c84b3eb6c0.jpg",
+      base64img: "https://raw.githubusercontent.com/pytorch/pytorch/master/docs/source/_static/img/pytorch-logo-dark.png",
       loadingflag: false,
     };
   },

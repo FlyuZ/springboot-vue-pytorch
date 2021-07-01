@@ -26,3 +26,6 @@ python socketapi.py
 ```
 
 <img width="800" alt="Spring-vue-pytorch" src="struct.png">
+
+### Results
+<img width="800" alt="Spring-vue-pytorch" src="show_res.gif">
