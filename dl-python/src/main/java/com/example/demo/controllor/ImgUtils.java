@@ -1,20 +1,19 @@
-package com.example.demo.controllor;
-
-import org.springframework.stereotype.Service;
+package com.example.dlface.controllor;
 
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class ImgUtils{
-    public Queue<String> queue;
+    public ConcurrentLinkedQueue<String> queue;
 
     public void getImg(String imgPath) {
         Socket socket = null;
         Thread thread = null;
-        queue = new LinkedList<>();
+        queue = new ConcurrentLinkedQueue<>();
         try {
             InetAddress addr = InetAddress.getLocalHost();
             String host = addr.getHostAddress();
@@ -42,6 +41,7 @@ public class ImgUtils{
                             if ((tmp = br.readLine()) == null) break;
                             if(tmp.length() < 10)
                                 continue;
+                            System.out.println(tmp.length());
                             queue.offer(tmp);
                             Thread.sleep(30);
                         } catch (IOException | InterruptedException e) {

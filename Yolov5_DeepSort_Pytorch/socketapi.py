@@ -7,6 +7,7 @@ import base64
 import threading
 import socket
 import os
+import json
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 inferencemodel = None
 
@@ -127,11 +128,14 @@ class ServerThreading(threading.Thread):
                     res = inferencemodel.predict(frame)
                     if len(res) < 1:
                         continue
-                    buffered = BytesIO()
-                    img_base64 = Image.fromarray(res)
-                    img_base64.save(buffered, format="JPEG")
-                    imgbase = base64.b64encode(buffered.getvalue()).decode('utf-8')
-                    self._socket.send(("%s" % imgbase).encode(self._encoding))
+                    # buffered = BytesIO()
+                    # img_base64 = Image.fromarray(res)
+                    # img_base64.save(buffered, format="JPEG")
+                    # imgbase = base64.b64encode(buffered.getvalue()).decode('utf-8')
+                    base64_str = cv2.imencode('.jpg',res)[1].tostring()
+                    imgbase = base64.b64encode(base64_str).decode('utf-8')
+                    msg = {"images": imgbase, "othermsg":""}
+                    self._socket.send(("%s" % json.dumps(msg)).encode(self._encoding))
                     self._socket.send(("\n").encode(self._encoding))
             pass
         except Exception as identifier:

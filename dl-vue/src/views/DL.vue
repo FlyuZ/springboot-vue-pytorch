@@ -84,7 +84,7 @@ export default {
     getimg() {
       // GET
       axios.get("/getimg").then((response) => {
-        this.base64img = "data:image/jpg;base64," + response.data;
+        this.base64img = "data:image/jpg;base64," + response.data.images;
         console.log(this.base64img.length);
       });
     },

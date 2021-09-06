@@ -20,7 +20,7 @@ public class ImgController {
     @RequestMapping(value = "/api/initdl", method= RequestMethod.GET) //前端api接口
     public String initDl() {
         imgUtils = new ImgUtils();
-        imgUtils.getImg("./sheep2.mp4");
+        imgUtils.getImg("./demo.mp4");
         return "success";
     }
     @RequestMapping(value = "/test", method= RequestMethod.GET)
